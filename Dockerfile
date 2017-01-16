@@ -1,7 +1,7 @@
 # vim:set ft=dockerfile
 # This image provides a Python 2.7 environment you can use to run your Python
 # applications.
-FROM centos/s2i-base-centos7
+FROM docker.io/centos/s2i-base-centos7
 
 EXPOSE 8080
 
