@@ -31,6 +31,7 @@ RUN yum repolist > /dev/null && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     # Remove redhat-logos (httpd dependency) to keep image size smaller.
+    rpm -e --nodeps centos-logos && \
     yum clean all -y
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH.
