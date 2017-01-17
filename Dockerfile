@@ -27,7 +27,7 @@ RUN yum repolist > /dev/null && \
     yum-config-manager --enable rhel-7-server-optional-rpms && \
     yum-config-manager --enable rhel-7-server-ose-3.2-rpms && \
     yum-config-manager --enable epel >/dev/null || : && \
-    INSTALL_PKGS="python python-devel python-setuptools python-pip nss_wrapper httpd httpd-devel atlas-devel gcc-gfortran postgresql postgresql-devel sqlite xmlsec1" && \
+    INSTALL_PKGS="python python-devel python-setuptools python2-pip nss_wrapper httpd httpd-devel atlas-devel gcc-gfortran postgresql postgresql-devel sqlite xmlsec1" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     # Remove redhat-logos (httpd dependency) to keep image size smaller.
