@@ -22,11 +22,12 @@ LABEL com.redhat.component="python27-docker" \
 # To use subscription inside container yum command has to be run first (before yum-config-manager)
 # https://access.redhat.com/solutions/1443553
 RUN yum repolist > /dev/null && \
+    yum install -y epel-release && \
     yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum-config-manager --enable rhel-7-server-optional-rpms && \
     yum-config-manager --enable rhel-7-server-ose-3.2-rpms && \
-    yum-config-manager --disable epel >/dev/null || : && \
-    INSTALL_PKGS="python27 python27-python-devel python27-python-setuptools python27-python-pip nss_wrapper httpd httpd-devel atlas-devel gcc-gfortran mysql-client libmysqlclient-dev postgresql-client libpq-dev sqlite3 xmlsec1" && \
+    yum-config-manager --enable epel >/dev/null || : && \
+    INSTALL_PKGS="python python-devel python-setuptools python-pip nss_wrapper httpd httpd-devel atlas-devel gcc-gfortran postgresql postgresql-devel sqlite xmlsec1" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     # Remove redhat-logos (httpd dependency) to keep image size smaller.
